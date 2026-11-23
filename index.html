@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- The lock: this page may load its own files and nothing else, and may not send
+       anything anywhere. connect-src 'none' blocks fetch/XHR/WebSockets/beacons, so even
+       buggy or tampered code can't upload a chat. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Yap Report</title>
+  <meta name="description" content="Wrapped for your WhatsApp group chat. Your chat never leaves your device.">
+  <meta name="theme-color" content="#0b0b14">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%A3%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <main id="home">
+    <header class="hero">
+      <p class="tag">wrapped, but for your group chat</p>
+      <h1>yap<br>report<span class="dot">.</span></h1>
+      <p class="lede">who's the top yapper? who's the ghost? who's texting at 3am?
+        drop your WhatsApp chat and find out who's <em>actually</em> cooked.</p>
+    </header>
+
+    <section class="upload">
+      <label id="drop" class="drop">
+        <input id="file" type="file" accept=".txt,.zip,text/plain,application/zip">
+        <span class="drop-icon">📂</span>
+        <span class="drop-title">drop your chat export here</span>
+        <span class="drop-sub">or tap to pick the .txt / .zip file</span>
+        <span class="drop-busy">reading the yap…</span>
+      </label>
+      <p id="error" class="error" role="alert" hidden></p>
+      <button id="demo" class="ghost-btn" type="button">no chat handy? try a demo group →</button>
+    </section>
+
+    <section class="privacy">
+      <h2>🔒 your chat never leaves your device</h2>
+      <ul>
+        <li><b>no server.</b> everything runs in your browser. there's nowhere to upload to.</li>
+        <li><b>locked down.</b> the page is blocked from sending data anywhere. not even analytics.</li>
+        <li><b>works offline.</b> don't trust us? load this page, turn off your Wi-Fi, then drop your chat.</li>
+        <li><b>nothing saved.</b> close the tab and it's gone. no cookies, no storage.</li>
+        <li><b>numbers hidden.</b> unsaved contacts get masked, and you can swap every name for "Person A, B…" before sharing.</li>
+        <li><b>open source.</b> <a href="https://github.com/FiftyWeedMan/yap-report" rel="noreferrer">read the code</a> yourself.</li>
+      </ul>
+    </section>
+
+    <section class="howto">
+      <h2>how to export your chat</h2>
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" data-os="android" aria-selected="true">android</button>
+        <button type="button" role="tab" data-os="iphone" aria-selected="false">iphone</button>
+      </div>
+      <ol data-steps="android">
+        <li>open the group in WhatsApp</li>
+        <li>tap <b>⋮</b> → <b>More</b> → <b>Export chat</b></li>
+        <li>choose <b>Without media</b></li>
+        <li>save it to Files / Drive, or send it to yourself, then drop it above</li>
+      </ol>
+      <ol data-steps="iphone" hidden>
+        <li>open the group in WhatsApp</li>
+        <li>tap the group name at the top</li>
+        <li>scroll down → <b>Export Chat</b> → <b>Without Media</b></li>
+        <li>tap <b>Save to Files</b>, then drop the .zip above</li>
+      </ol>
+    </section>
+
+    <footer class="foot">made with too much free time · <a href="https://github.com/FiftyWeedMan/yap-report" rel="noreferrer">github</a></footer>
+  </main>
+
+  <div id="player" hidden>
+    <div id="progress" class="progress"></div>
+    <div class="toolbar">
+      <button id="close" type="button" aria-label="Close">✕</button>
+      <label class="switch"><input id="hide-names" type="checkbox"><span>hide names</span></label>
+    </div>
+    <div id="stage" class="stage"></div>
+    <div class="controls">
+      <button id="prev" type="button" aria-label="Previous">←</button>
+      <button id="save" type="button">save card 📲</button>
+      <button id="next" type="button" aria-label="Next">→</button>
+    </div>
+  </div>
+</body>
+</html>

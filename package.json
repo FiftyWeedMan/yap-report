@@ -1,0 +1,11 @@
+{
+  "name": "yap-report",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Wrapped for your WhatsApp group chat. Runs entirely in your browser.",
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "start": "python -m http.server 5173"
+  }
+}
